@@ -1,19 +1,40 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="id">
 <head>
+    <!-- Pengaturan karakter standar agar tidak ada teks yang eror -->
+    <meta charset="UTF-8">
+    <!-- Pengaturan agar tampilan web menyesuaikan ukuran layar (misal di HP) -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>Profil Saya - Reiga</title>
+    
+    <!-- Menghubungkan file HTML ini dengan file CSS untuk menghias tampilan -->
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+    <!-- Ini adalah wadah (kotak) utama untuk kartu profilmu -->
     <div class="kartu-profil">
+        
+        <!-- Menampilkan foto profil -->
         <img src="senja-foto.jpg" alt="Foto profil saya">
+        
+        <!-- Judul / Nama kamu -->
         <h1>Reiga Delia Valentika</h1>
+        
+        <!-- Paragraf deskripsi singkat -->
         <p>Siswi SMK yang tertarik teknologi dan desain. Selamat datang di website pertama saya!</p>
-        <a href="https://www.instagram.com/redvalnn">Kunjungi Instagram Saya</a>
+        
+        <!-- Tautan (Link) ke Instagram. 'target="_blank"' berguna agar link terbuka di tab baru -->
+        <a href="https://www.instagram.com/redvalnn" target="_blank">Kunjungi Instagram Saya</a>
+        <br><br> <!-- Menambahkan sedikit jarak antara link dan tombol -->
+        
+        <!-- Tombol yang nantinya akan diberi fungsi klik oleh JavaScript -->
         <button id="sapaButton">Sapa Saya!</button>
+        
     </div>
+
+    <!-- Menghubungkan file HTML ini dengan file JavaScript untuk interaksi/fitur tombol -->
     <script src="script.js"></script>
 </body>
 </html>
