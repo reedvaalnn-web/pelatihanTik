@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RC Premium - Smart Assistant</title>
+    <style>
+        :root {
+            --bg-color: #121212;
+            --text-color: #ffffff;
+            --accent-color: #f39c12;
+            --card-bg: #1e1e1e;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 0 20px;
+            border-bottom: 1px solid #333;
+        }
+
+        header h1 {
+            margin: 0;
+            color: var(--accent-color);
+            font-size: 2.2rem;
+            letter-spacing: 1px;
+        }
+
+        .ai-consultation {
+            background-color: var(--card-bg);
+            padding: 25px;
+            border-radius: 12px;
+            margin-top: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            background-color: #2a2a2a;
+            color: white;
+            border: 1px solid #444;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: var(--accent-color);
+            color: #000;
+            text-align: center;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #d68910;
+        }
+
+        #result-box {
+            display: none;
+            margin-top: 25px;
+            padding: 20px;
+            border-left: 4px solid var(--accent-color);
+            background-color: #2a2a2a;
+            border-radius: 4px;
+        }
+
+        .product-name {
+            font-size: 1.3rem;
+            color: var(--accent-color);
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>RC Premium</h1>
+            <p>Konsultasikan selera lidahmu dengan AI Assistant kami.</p>
+        </header>
+
+        <section class="ai-consultation">
+            <label for="tastePref">Apa sensasi rasa yang paling kamu cari hari ini?</label>
+            <select id="tastePref">
+                <option value="" disabled selected>-- Pilih Preferensi Rasa --</option>
+                <option value="manis_lembut">Sangat Manis & Tekstur Lembut</option>
+                <option value="pahit_legit">Manis dengan Sensasi Pahit Legit</option>
+                <option value="daging_tebal">Daging Super Tebal & Biji Tipis</option>
+            </select>
+
+            <button class="btn" onclick="analyzePreference()">Analisis Rekomendasi 🧠</button>
+
+            <div id="result-box">
+                <p style="margin-top:0; font-size:0.9rem; color:#aaa;">Rekomendasi Cerdas untukmu:</p>
+                <div class="product-name" id="product-name"></div>
+                <p id="product-desc"></p>
+                <button class="btn" id="order-btn" style="margin-top:15px; background-color: #25D366; color: white;">
+                    Pesan via WhatsApp
+                </button>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        function analyzePreference() {
+            const pref = document.getElementById('tastePref').value;
+            const resultBox = document.getElementById('result-box');
+            const productName = document.getElementById('product-name');
+            const productDesc = document.getElementById('product-desc');
+            const orderBtn = document.getElementById('order-btn');
+
+            if (!pref) {
+                alert("Silakan pilih preferensi rasa terlebih dahulu!");
+                return;
+            }
+
+            // Logika "AI" Rule-Based Sederhana
+            let selectedProduct = "";
+            let description = "";
+            let price = "";
+
+            switch(pref) {
+                case "manis_lembut":
+                    selectedProduct = "Durian Bawor Super";
+                    description = "Karakteristik daging berwarna kuning oranye, rasa sangat manis, dan teksturnya lumer di mulut. Pilihan paling aman untuk semua orang.";
+                    price = "Rp 150.000/kg";
+                    break;
+                case "pahit_legit":
+                    selectedProduct = "Durian Montong Lokal / Pelangi";
+                    description = "Memiliki semburat rasa pahit alkoholik di akhir gigitan yang sangat dicari oleh penikmat durian sejati.";
+                    price = "Rp 120.000/kg";
+                    break;
+                case "daging_tebal":
+                    selectedProduct = "Durian Musang King";
+                    description = "Biji kempes rata, daging super tebal dan padat. Memberikan kepuasan maksimal dalam setiap gigitan.";
+                    price = "Rp 350.000/kg";
+                    break;
+            }
+
+            // Tampilkan hasil dengan manipulasi DOM
+            productName.innerText = selectedProduct;
+            productDesc.innerHTML = `${description}<br><br><strong>Estimasi Harga: ${price}</strong>`;
+            
+            // Format Pesan WhatsApp
+            const waNumber = "6281234567890"; // Ganti dengan nomor asli
+            const waMessage = encodeURIComponent(`Halo RC Premium, saya tertarik memesan ${selectedProduct} berdasarkan rekomendasi cerdas di website.`);
+            orderBtn.onclick = function() {
+                window.open(`https://wa.me/${waNumber}?text=${waMessage}`, '_blank');
+            };
+
+            // Animasi kemunculan sederhana
+            resultBox.style.display = "block";
+            resultBox.animate([
+                { opacity: 0, transform: 'translateY(10px)' },
+                { opacity: 1, transform: 'translateY(0)' }
+            ], { duration: 400, fill: 'forwards' });
+        }
+    </script>
+</body>
+</html>
