@@ -1,22 +1,23 @@
+/* Mengatur tampilan dasar seluruh halaman web */
 body {
-    background-color: #bfddf7;
-    font-family: Arial, sans-serif;
-    color: #e3b179;
+    background-color: #bfddf7; /* Warna latar belakang halaman biru muda */
+    font-family: Arial, sans-serif; /* Jenis huruf yang digunakan agar rapi */
+    color: #e3b179; /* Warna teks utama pada halaman */
 }
 
+/* Mengatur tampilan kotak kartu profil */
 .kartu-profil {
-    width: 300px;
-    margin: 50px auto;
-    padding: 20px;
-    background-color: #fefefe;
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-
-    text-align: center;
+    width: 300px; /* Lebar kotak kartu */
+    margin: 50px auto; /* Memberi jarak 50px di atas, dan 'auto' membuat kartu berada di tengah layar */
+    padding: 20px; /* Ruang kosong di dalam kartu agar teks tidak menempel ke garis tepi */
+    background-color: #fefefe; /* Warna latar belakang kartu (putih) */
+    border-radius: 15px; /* Membuat sudut-sudut kartu menjadi melengkung/tidak lancip */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Menambahkan efek bayangan lembut di belakang kartu */
+    text-align: center; /* Membuat semua teks dan gambar di dalam kartu menjadi rata tengah */
 }
 
+/* Mengatur khusus tampilan gambar (img) yang ada di dalam kartu profil */
 .kartu-profil img {
-    width: 150px;
-    border-radius: 50%;
+    width: 150px; /* Membatasi lebar foto profil */
+    border-radius: 50%; /* Membuat foto yang tadinya kotak menjadi lingkaran sempurna */
 }
-
